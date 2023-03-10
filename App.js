@@ -14,10 +14,9 @@ const App = () => {
   // })
   
   const pesquisa = () => {
-    alert('https://viacep.com.br/ws/' + entrada + '/json')
-    axios('https://viacep.com.br/ws/' + entrada + '/json')
+    axios('https://www.omdbapi.com/?apikey=d8a44ab&type=movie&r=json&page=1&s=love')
     .then(function (response){
-      setTexto(JSON.stringify(response.data))
+      setTexto(JSON.stringify(response.data.Search))
     })
     .catch((error)=> {
       console.log(error);
@@ -41,6 +40,7 @@ const App = () => {
    }, [clicou])
    
 return (
+  <ScrollView>
         <View style={estilo.container}>
             <Text style={estilo.texto}>{texto}</Text>
             <TextInput style={estilo.caixa}
@@ -55,7 +55,14 @@ return (
             >
               <Text style={estilo.textoBotao}>BUSCAR DADOS</Text>
               </TouchableOpacity>
+
+              <FlatList
+              data={texto}
+              render={({item})=><Text>{item.Title}</Text>}
+              />
+
         </View>
+        </ScrollView>
  )
 }
 
