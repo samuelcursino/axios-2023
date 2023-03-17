@@ -42,6 +42,16 @@ const App = () => {
     }
    }, [clicou])
    
+   const Item = ({titulo, capa}) => {
+    return (
+      <View style={estilo.container}>
+        <Text>{titulo}</Text>
+        <Image source={{uri:capa}} style={{width:100, heigth:100, borderRadius: 15, margin:16}} />
+        <img src={capa}  style={{width:100, heigth:100, borderRadius: 10, margin:16}} />
+      </View>
+    )
+   }
+
 return (
   <ScrollView>
         <View style={estilo.container}>
@@ -63,7 +73,8 @@ return (
 
               <FlatList
               data={texto.Search}
-              renderItem={({item})=><Text style={estilo.texto}>{item.Title}</Text>}
+              renderItem={({item})=>< Item titulo={item.Title}capa={item.Poster}/>}
+              keyExtractor={(item)=>item.imdbID}
               />
 
         </View>
